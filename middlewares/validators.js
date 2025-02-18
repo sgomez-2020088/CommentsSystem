@@ -14,7 +14,9 @@ export const registerValidator = [
 
 
 export const loginValidator = [
-    body('email', 'Email cannot be empty').notEmpty().toLowerCase(),
-    body('password', 'Password cannot be empty').notEmpty().isStrongPassword().isLength({min:8}),
+    body('userData')
+        .notEmpty().withMessage('Your information cannot be empty').trim(), 
+    body('password').notEmpty().withMessage('Password cannot be empty')
+        .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'), // 🔥 Validación simple
     validateErrors       
 ]

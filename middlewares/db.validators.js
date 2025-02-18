@@ -8,7 +8,7 @@ export const exitEmailUser = async(email)=>{
     }
 }
 
-export const exitUsername = async(email)=>{
+export const exitUsername = async(username)=>{
     const alreadyUsername = await User.findOne({username})
     if(alreadyUsername){
         console.error(`Username ${email} is already`)
