@@ -17,3 +17,4 @@ export const checkPassword = async(hash, password)=>{
         console.error(err)
     }
 }
+

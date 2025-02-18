@@ -6,6 +6,10 @@ import helmet from 'helmet'
 import cors from 'cors' 
 import auth from '../src/auth/auth.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
+import  {createDefaultAdmin} from '../configs/setupData.js'
+import {createDefaultCategory} from '../configs/setupData.js'
+
+
 
 
 const configs = (app)=>{
@@ -28,6 +32,8 @@ export const initServer = async()=> {
     try{
         configs(app)
         routes(app)
+        createDefaultAdmin()
+        createDefaultCategory()
         app.listen(process.env.PORT)
         console.log(`Server running in port ${process.env.PORT}`)
     }catch(err){
@@ -35,3 +41,4 @@ export const initServer = async()=> {
     }
     
 }
+
