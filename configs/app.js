@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import helmet from 'helmet' 
 import cors from 'cors' 
 import auth from '../src/auth/auth.routes.js'
+import categoryRoutes from '../src/category/category.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 import  {createDefaultAdmin} from '../configs/setupData.js'
 import {createDefaultCategory} from '../configs/setupData.js'
@@ -23,6 +24,7 @@ const configs = (app)=>{
 
 const routes = (app)=>{
     app.use(auth)
+    app.use('/v1/category',categoryRoutes)
 
 }
 

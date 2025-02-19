@@ -1,6 +1,7 @@
 'use strict '
 import jwt from 'jsonwebtoken'
-import { findUser } from '../helpers/db.validators.js'
+import { findUser } from '../middlewares/db.validators.js'
+
 
 export const validateJwt = async(req, res, next)=>{
     try{
@@ -33,7 +34,7 @@ export const isAdmin = async(req, res, next)=>{
         if(!user || user.role !== 'ADMIN') return res.status(403).send(
             {
                 success: false,
-                message: `You dont have access | email ${user.email}`
+                message: `You dont have access | username ${user.username}`
             }
         )
         next()
@@ -47,5 +48,7 @@ export const isAdmin = async(req, res, next)=>{
         )
     }
 }
+
+
 
 
