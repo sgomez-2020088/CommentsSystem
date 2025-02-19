@@ -12,7 +12,6 @@ export const registerValidator = [
     validateErrors       
 ]
 
-
 export const loginValidator = [
     body('userData','Your information cannot be empty').notEmpty().toLowerCase(),
     body('password', 'Password cannot be empty').notEmpty().isStrongPassword().isLength({min:8}),
@@ -22,5 +21,15 @@ export const loginValidator = [
 export const addCategory = [
     body('name','Category name cannot be empty').notEmpty(),
     body('description','Description cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateUser = [
+    body('oldPass', 'Old password is required to update profile').notEmpty(),
+    body('name', 'Name cannot be a blank').optional().notEmpty(),
+    body('surname', 'Surname cannot be a blank').optional().notEmpty(),
+    body('username', 'Username cannot be a blank').optional().notEmpty(),
+    body('phone', 'Phone cannot be a blank').optional().notEmpty(),
+    body('newPassword', 'New password cannot be a blank').optional().notEmpty(),
     validateErrors
 ]
