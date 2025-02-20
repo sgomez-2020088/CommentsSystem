@@ -2,7 +2,6 @@ import User from './user.model.js'
 
 import { encrypt,checkPassword } from '../../utils/encrypt.js'
 
-
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id
@@ -16,7 +15,7 @@ export const updateProfile = async (req, res) => {
 
         if (newPassword) user.password = await encrypt(newPassword)
         
-
+            
         Object.assign(user, data) //No afecta el pass
 
         await user.save()

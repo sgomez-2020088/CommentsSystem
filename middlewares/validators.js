@@ -19,8 +19,15 @@ export const loginValidator = [
 ]
 
 export const addCategory = [
-    body('name','Category name cannot be empty').notEmpty(),
+    body('name','Category name cannot be empty').notEmpty().toLowerCase(),
     body('description','Description cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updateCategoryValidator = [
+    body('id','Id is necesary to update').notEmpty(),
+    body('name','name cannot be a blank').optional().notEmpty(),
+    body('description','Description cannot be a blank').optional().notEmpty(),
     validateErrors
 ]
 
