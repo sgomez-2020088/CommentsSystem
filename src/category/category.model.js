@@ -11,7 +11,7 @@ const categorySchema = new Schema({
     description: {
         type: String,
         required: [true, 'Description name is required'],
-        maxLength: [30, `Can't exceed 30 characters`]
+        maxLength: [100, `Can't exceed 30 characters`]
     }
 })
 

@@ -17,7 +17,7 @@ export const updateProfile = async (req, res) => {
         if (newPassword) user.password = await encrypt(newPassword)
         
 
-        Object.assign(user, data)
+        Object.assign(user, data) //No afecta el pass
 
         await user.save()
         res.send({ message: 'Profile updated successfully', succes: true })

@@ -15,6 +15,7 @@ export const createCategory = async (req, res) => {
 
         res.send({ message: 'Category created successfully', category: newCategory, succes: true})
     } catch (err) {
+        console.error(err)
         res.status(500).send({message: 'General error', success: false})
     }
 }
@@ -29,6 +30,7 @@ export const updateCategory = async (req, res) => {
         if(!updateCategory) return res.status(404).send({message: 'Category not found', success: false})
             return res.send({message: 'Category updated succesfully', category: updateCategory, success: true})
     } catch (err) {
+        console.error(err)
         res.status(500).send({message: 'General error', success: false})
     }
 }
@@ -56,6 +58,7 @@ export const deleteCategory = async (req, res) => {
         await Category.deleteOne({ _id: categoryToDelete._id })
         res.send({ message: 'Category deleted successfully, publications reassigned', success: true })
     } catch (err) {
+        console.error(err)
         res.status(500).send({ message: 'General error', success: false })
     }
 }

@@ -33,3 +33,22 @@ export const updateUser = [
     body('newPassword', 'New password cannot be a blank').optional().notEmpty(),
     validateErrors
 ]
+
+export const addPublicationValidator = [
+    body('title','Title cannot be empty').notEmpty(),
+    body('category','Category cannot be empty').notEmpty(),
+    body('content','Content cannot be empty').notEmpty(),
+    validateErrors
+]
+
+export const updatePublicationValidator = [
+    body('title','Title cannot be empty').optional().notEmpty(),
+    body('category','Category cannot be empty').optional().notEmpty(),
+    body('content','Content cannot be empty').optional().notEmpty(),
+    validateErrors
+]
+
+export const deletePublicationValidator = [
+    body('id','Id cannot be empty').notEmpty(),
+    validateErrors
+]

@@ -8,6 +8,6 @@ const api = Router()
 api.post('/registerUser',[registerValidator],registerUser)
 
 
-api.post('/login', [loginValidator], login)
+api.post('/login',[loginValidator],login)
 
 export default api
