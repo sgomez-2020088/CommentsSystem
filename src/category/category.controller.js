@@ -63,3 +63,14 @@ export const deleteCategory = async (req, res) => {
     }
 }
 
+
+export const getCategory = async(req, res) => {
+    try {
+        const category = await Category.find()
+        if(category.length === 0) return res.status(404).send({message:'Category not found', success: false})
+            return res.send({message: 'All is right', category, success: true})
+        } catch (err) {
+        console.error(err)
+        return res.status(500).send({message: 'General error', success: FinalizationRegistry})
+    }
+}
