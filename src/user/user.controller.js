@@ -19,9 +19,22 @@ export const updateProfile = async (req, res) => {
         Object.assign(user, data) //No afecta el pass
 
         await user.save()
-        res.send({ message: 'Profile updated successfully', succes: true })
+        return res.send({ message: 'Profile updated successfully', succes: true })
     } catch (err) {
         console.error(err)
-        res.status(500).send({ message: 'General error', success: false })
+        return res.status(500).send({ message: 'General error', success: false })
     }
 }
+
+export const allUsers = async (req, res) => {
+    try {
+        const user = await User.find()
+        if(user.length===0) return res.status(404).send({message: 'Users not founded', success: false})
+            return res.send({message: 'All is right', user, success: true})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({message: ' General error', success: false})
+    }
+}
+
+
