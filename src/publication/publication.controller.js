@@ -7,7 +7,7 @@ export const addPublication = async (req, res) => {
         const author = req.user.id 
 
         const existCategory = await Category.findById(data.category)
-        if (!existCategory) return res.status(400).send({ message: 'Invalid category', success: false })
+        if (!existCategory) return res.status(404).send({ message: 'Invalid category', success: false })
         
 
     
@@ -19,10 +19,10 @@ export const addPublication = async (req, res) => {
             .populate('category', 'name')
 
 
-        res.send({ message: 'Publication created successfully', success: true, publication: populatedPublication})
+        return res.send({ message: 'Publication created successfully', success: true, publication: populatedPublication})
     } catch (err) {
-        console.error(rr)
-        res.status(500).send({ message: 'General error', success: false, error: err.message })
+        console.error(err)
+        return res.status(500).send({ message: 'General error', success: false})
     }
 }
 
@@ -42,21 +42,23 @@ export const updatePublication = async (req, res) => {
 
         if (!updatedPublication) return res.status(404).send({ message: 'Publication not found', success: false })
         
-        res.send({ message: 'Publication updated successfully', success: true, publication: updatedPublication })
+        return res.send({ message: 'Publication updated successfully', success: true, publication: updatedPublication })
     } catch (err) {
         console.error(err)
-        res.status(500).send({ message: 'General error', success: false })
+        return res.status(500).send({ message: 'General error', success: false })
     }
 }
-
 
 export const deletePublication = async (req, res) => {
     try {
         const id  = req.body.id
-        const deletedPublication = await Publication.findByIdAndDelete(id)
-        if(!deletePublication) return res.status(400).send({message:'publication not found', success: false})
+        const deletedPublication = await Publication.findByIdAndUpdate(
+            id,
+            {status: false},
+            {new: true}
+        )
+        if(!deletedPublication) return res.status(400).send({message:'publication not found', success: false})
 
-        
         return res.send({ message: 'Publication deleted successfully', success: true })
     } catch (err) {
         console.error(err)
