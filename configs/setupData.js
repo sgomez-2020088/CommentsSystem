@@ -8,7 +8,7 @@ export const createDefaultAdmin = async () => {
         const existingAdmin = await User.findOne({ email: adminEmail })
 
         if (!existingAdmin) {
-            const hashedPassword = await encrypt("Parmas./123")
+            const hashedPassword = await encrypt(process.env.DEFAULT_NAME)
             const adminUser = new User({
                 name: "Admin",
                 surname: "Default",
