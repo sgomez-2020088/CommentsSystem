@@ -92,3 +92,27 @@ export const deleteComment = async (req, res) => {
         return res.status(500).send({ message: 'General error', success: false })
     }
 }
+
+export const getUserComments = async (req, res) => {
+    try {
+        const author = req.user.id
+
+        const comments = await Comment.find({ author, status: true })
+            .populate('publication', 'title')
+            .populate({
+                path: 'publication',
+                select: 'title',
+                populate: { 
+                    path: 'category', 
+                    select: 'name -_id' 
+                }
+            })
+
+        if (comments.length === 0) return res.status(404).send({ message: 'You have no comments.', success: false })
+        return res.send({ message: 'All is right', comments, success: true })
+
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({ message: 'General error', success: false })
+    }
+}
