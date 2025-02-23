@@ -11,8 +11,8 @@ export const exitEmailUser = async(email)=>{
 export const exitUsername = async(username)=>{
     const alreadyUsername = await User.findOne({username})
     if(alreadyUsername){
-        console.error(`Username ${email} is already`)
-        throw new Error(`Username ${email} is already`)
+        console.error(`Username ${username} is already`)
+        throw new Error(`Username ${username} is already`)
     }
 }
 
