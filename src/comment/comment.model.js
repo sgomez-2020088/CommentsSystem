@@ -19,7 +19,17 @@ const commentSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    status: {
+        type: Boolean,
+        default: true
     }
 })
 
+commentSchema.methods.toJSON = function(){
+    const{_v, ...comment} = this.toObject()
+    return comment
+}
 export default model('Comment', commentSchema)
+
+
