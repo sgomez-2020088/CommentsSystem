@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from 'mongoose';
 
 const publicationSchema = Schema({
     title: {
@@ -24,15 +24,19 @@ const publicationSchema = Schema({
         type: Date,
         default: Date.now
     },
-    status:{
+    status: {
         type: Boolean,
         default: true
-    }
-})
+    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'  
+    }]
+});
 
-publicationSchema.methods.toJSON = function (){
-    const {__v, _id, ...publication } = this.toObject()
-    return publication
-}
+publicationSchema.methods.toJSON = function () {
+    const { __v, _id, ...publication } = this.toObject();
+    return publication;
+};
 
-export default model('Publication', publicationSchema)
+export default model('Publication', publicationSchema);
