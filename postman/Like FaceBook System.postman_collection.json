@@ -1,0 +1,710 @@
+{
+	"info": {
+		"_postman_id": "22a0d2e9-0b3a-45d0-b80a-01f9260266c2",
+		"name": "Like FaceBook System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37951897"
+	},
+	"item": [
+		{
+			"name": "CATEGORY",
+			"item": [
+				{
+					"name": "ADD Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Categoria para borrar",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Categoria para borrar",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/category/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"category",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba811de239c79b0a521b0f",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "hablemos de javaScript",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/category/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"category",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Category Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba811de239c79b0a521b0f",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/category/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"category",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/category/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"category",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "UPDATE user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPass",
+									"value": "Parmas./123",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Rodri UnU",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "rguz",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "newPassword",
+									"value": "Parmas./123",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUBLICATION",
+			"item": [
+				{
+					"name": "ADD Publication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "prueba1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67ba0c4489880cd986d99572",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "prueba1",
+									"type": "text"
+								},
+								{
+									"key": "createdAt",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/publication/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"publication",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Publication",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba16ee9d1e18a936a194fe",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Erro NODE JS",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Lo he logrado solucionar gracias",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/publication/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"publication",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Publication Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba16ee9d1e18a936a194fe",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/publication/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"publication",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Publications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/publication/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"publication",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADMIN FUNCTIONS",
+			"item": [
+				{
+					"name": "GET Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENT",
+			"item": [
+				{
+					"name": "ADD Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "publication",
+									"value": "67ba16d29d1e18a936a194f7",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "prueba 3 de la moto",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/comment/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"comment",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT  Comment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba22d5bee4f287090a9818",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Pero la V2 edicion carrera, claro esta",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/comment/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"comment",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE  Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67ba1f512837ee755bcc51f0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3629/v1/comment/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3629",
+							"path": [
+								"v1",
+								"comment",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Rodrigo",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Guzman",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "rguzman",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "rguzman@kinal.edu.gt",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Parmas./123",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "58777921",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3629/registerUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3629",
+					"path": [
+						"registerUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody)\r",
+							"postman.setGlobalVariable(\"token\",data.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userData",
+							"value": "admin",
+							"description": "ADMIN",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "userData",
+							"value": "rguzman",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Parmas./123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3629/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3629",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

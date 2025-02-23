@@ -1,11 +1,9 @@
 import Publication from '../publication/publication.model.js'
 import Category from '../category/category.model.js'
 
-
-
 export const getPublications = async (req, res) => {
     try {
-        const { limit = 20, skip = 0 } = req.query;
+        const { limit = 20, skip = 0, comLimit = 5, comSkip = 5} = req.query
 
         const publications = await Publication.find({ status: true })
             .skip(skip)
@@ -16,6 +14,10 @@ export const getPublications = async (req, res) => {
                 path: 'comments',
                 match: {status: true},
                 select: 'author content -_id',
+                options:{
+                    limit: comLimit,
+                    skip: comSkip
+                },
                 populate: {
                     path: 'author',
                     select: 'name username -_id'
@@ -23,13 +25,13 @@ export const getPublications = async (req, res) => {
             })
 
         if (publications.length === 0) {
-            return res.status(404).send({ message: 'Publications not found', success: false });
+            return res.status(404).send({ message: 'Publications not found', success: false })
         }
 
-        return res.send({ message: 'All is right', publications, success: true });
+        return res.send({ message: 'All is right', publications, success: true })
     } catch (err) {
-        console.error(err);
-        return res.status(500).send({ message: 'General error', success: false });
+        console.error(err)
+        return res.status(500).send({ message: 'General error', success: false })
     }
 }
 
@@ -55,7 +57,6 @@ export const addPublication = async (req, res) => {
         return res.status(500).send({ message: 'General error', success: false})
     }
 }
-
 
 export const updatePublication = async (req, res) => {
     try {

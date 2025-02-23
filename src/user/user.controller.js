@@ -25,16 +25,20 @@ export const updateProfile = async (req, res) => {
         const user = await User.findById(userId)
         if (!user) return res.status(404).send({ message: 'User not found', success: false })
 
-        const isMatch = await checkPassword(user.password, oldPass)
-        if (!isMatch) return res.status(400).send({ message: 'Incorrect password', success: false })
 
-        if (newPassword) user.password = await encrypt(newPassword)
-        
+        if (newPassword) {
+            if (!oldPass) return res.status(400).send({ message: 'Old password is required to change password', success: false })
             
-        Object.assign(user, data) //No afecta el pass
+            const isMatch = await checkPassword(user.password, oldPass)
+            if (!isMatch) return res.status(400).send({ message: 'Incorrect password', success: false })
+
+            user.password = await encrypt(newPassword)
+        }
+        
+        Object.assign(user, data)
 
         await user.save()
-        return res.send({ message: 'Profile updated successfully', succes: true })
+        return res.send({ message: 'Profile updated successfully', success: true })
     } catch (err) {
         console.error(err)
         return res.status(500).send({ message: 'General error', success: false })

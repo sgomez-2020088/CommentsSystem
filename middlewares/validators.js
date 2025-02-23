@@ -32,7 +32,7 @@ export const updateCategoryValidator = [
 ]
 
 export const updateUser = [
-    body('oldPass', 'Old password is required to update profile').notEmpty(),
+    body('oldPass').if(body('newPassword').exists()).notEmpty().withMessage('Old password is required to update profile'),
     body('name', 'Name cannot be a blank').optional().notEmpty(),
     body('surname', 'Surname cannot be a blank').optional().notEmpty(),
     body('username', 'Username cannot be a blank').optional().notEmpty(),
