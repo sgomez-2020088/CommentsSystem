@@ -1,9 +1,10 @@
 import Publication from '../publication/publication.model.js'
 import Category from '../category/category.model.js'
+import Comment from '../comment/comment.model.js'
 
 export const getPublications = async (req, res) => {
     try {
-        const { limit = 20, skip = 0, comLimit = 5, comSkip = 5} = req.query
+        const { limit = 20, skip = 0, comLimit = 5, comSkip = 0} = req.query
 
         const publications = await Publication.find({ status: true })
             .skip(skip)
@@ -24,16 +25,15 @@ export const getPublications = async (req, res) => {
                 }
             })
 
-        if (publications.length === 0) {
-            return res.status(404).send({ message: 'Publications not found', success: false })
-        }
-
+        if (publications.length === 0) return res.status(404).send({ message: 'Publications not found', success: false })
+            console.log("uwu", publications)
         return res.send({ message: 'All is right', publications, success: true })
     } catch (err) {
         console.error(err)
         return res.status(500).send({ message: 'General error', success: false })
     }
 }
+
 
 export const addPublication = async (req, res) => {
     try {
@@ -93,6 +93,11 @@ export const deletePublication = async (req, res) => {
             {new: true}
         )
         if(!deletedPublication) return res.status(400).send({message:'publication not found', success: false})
+
+            await Comment.updateMany(
+                {publication:id, status: true},
+                {$set: {status:false}}
+            )
 
         return res.send({ message: 'Publication deleted successfully', success: true })
     } catch (err) {
