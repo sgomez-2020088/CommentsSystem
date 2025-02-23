@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { validateJwt } from '../../middlewares/validate.jwt.js'
-import { addPublication, updatePublication, deletePublication, getPublications } from './publication.controller.js'
+import { addPublication, updatePublication, deletePublication,getPublications } from './publication.controller.js'
 import { addPublicationValidator, updatePublicationValidator, deletePublicationValidator} from '../../middlewares/validators.js'
 import { isPublicationAuthor } from '../../middlewares/publication.validators.js'
 
