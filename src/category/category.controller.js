@@ -1,6 +1,22 @@
 import Category from './category.model.js'
 import Publication from '../publication/publication.model.js'
 
+export const getCategory = async(req, res) => {
+    try {
+        const { limit = 20, skip = 0 } = req.query
+        const category = await Category.find()
+            .skip(skip)
+            .limit(limit)
+            
+        if(category.length === 0) return res.status(404).send({message:'Category not found', success: false})
+            return res.send({message: 'All is right', category, success: true})
+        } catch (err) {
+        console.error(err)
+        return res.status(500).send({message: 'General error', success: FinalizationRegistry})
+    }
+}
+
+
 export const createCategory = async (req, res) => {
     try {
         const { name, description } = req.body
@@ -38,39 +54,26 @@ export const updateCategory = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
     try {
-        const { name } = req.body
+        const { id } = req.body
 
-        if (name === 'General') return res.status(403).send({ message: 'Default category cannot be deleted', success: false })
+        const defaultCategory = await Category.findOne({ name: 'General' })  
         
-        const categoryToDelete = await Category.findOne({ name })
-        if (!categoryToDelete) return res.status(404).send({ message: 'Category not found', success: false })
-        
+        if( id === defaultCategory._id.toString) return res.status(403).send({ message: 'General category cannot be deleted', success: false })
 
-        let defaultCategory = await Category.findOne({ name: 'General' })
-        if (!defaultCategory)defaultCategory = await Category.create({ name: 'General', description: 'Categoría por defecto' })
+        const deletedCategory = await Category.findById( id )
+        if (!deletedCategory) return res.status(404).send({message: 'Category not founded', success: false})
         
 
         await Publication.updateMany(
-            { category: categoryToDelete._id },
+            { category: deletedCategory._id },
             { category: defaultCategory._id }
         )
 
-        await Category.deleteOne({ _id: categoryToDelete._id })
-        res.send({ message: 'Category deleted successfully, publications reassigned', success: true })
+        await Category.deleteOne({ _id: deletedCategory._id })
+        return res.send({ message: 'Category deleted successfully', success: true })
     } catch (err) {
         console.error(err)
-        res.status(500).send({ message: 'General error', success: false })
+        return res.status(500).send({ message: 'General error', success: false })
     }
 }
 
-
-export const getCategory = async(req, res) => {
-    try {
-        const category = await Category.find()
-        if(category.length === 0) return res.status(404).send({message:'Category not found', success: false})
-            return res.send({message: 'All is right', category, success: true})
-        } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: 'General error', success: FinalizationRegistry})
-    }
-}
