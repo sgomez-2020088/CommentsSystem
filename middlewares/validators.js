@@ -57,8 +57,7 @@ export const updatePublicationValidator = [
 ]
 
 export const deletePublicationValidator = [
-    body('publication','Publication cannot be empty').notEmpty(),
-    body('content','Content cannot be empty').notEmpty(),
+    body('id','Id Publication cannot be empty').notEmpty(),
     validateErrors
 ]
 
