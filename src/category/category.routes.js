@@ -11,5 +11,5 @@ api.put('/update',[validateJwt, isAdmin, updateCategoryValidator],updateCategory
 
 api.delete('/delete',[validateJwt,isAdmin],deleteCategory)
 
-api.get('/all',[validateJwt,isAdmin],getCategory)
+api.get('/all',[validateJwt],getCategory)
 export default api
