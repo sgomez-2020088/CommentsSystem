@@ -16,7 +16,6 @@ export const exitUsername = async(username)=>{
     }
 }
 
-
 export const findUser = async(id)=>{
     try{
         const userExist = await User.findById(id)
@@ -27,4 +26,5 @@ export const findUser = async(id)=>{
         return false
     }
 }
+
 
