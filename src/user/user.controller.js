@@ -2,6 +2,21 @@ import User from './user.model.js'
 
 import { encrypt,checkPassword } from '../../utils/encrypt.js'
 
+export const allUsers = async (req, res) => {
+    try {
+        const { limit = 20, skip = 0 } = req.query
+        const user = await User.find({status: true})
+            .skip(skip)
+            .limit(limit)
+        if(user.length===0) return res.status(404).send({message: 'Users not founded', success: false})
+            return res.send({message: 'All is right', user, success: true})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({message: ' General error', success: false})
+    }
+}
+
+
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id
@@ -25,16 +40,3 @@ export const updateProfile = async (req, res) => {
         return res.status(500).send({ message: 'General error', success: false })
     }
 }
-
-export const allUsers = async (req, res) => {
-    try {
-        const user = await User.find()
-        if(user.length===0) return res.status(404).send({message: 'Users not founded', success: false})
-            return res.send({message: 'All is right', user, success: true})
-    } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: ' General error', success: false})
-    }
-}
-
-
